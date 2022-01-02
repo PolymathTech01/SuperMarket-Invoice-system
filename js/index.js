@@ -71,69 +71,81 @@ Body Cream    2000
 Plantain       300
 Total =     2500
 */
-items = {
-    1: ["Detol_soap", 200],
-    2: ["Juice", 550],
-    3: ["Body Cream", 2000],
-    4: ["Plantain Chips", 2500],
-    5: ["Crispy Chicken", 1250],
-    6: ["Chocolate", 120],
-    7: ["Plantain", 300]
+let items = {
+  "1": {
+    itemName: "Dettol soap",
+    price: 250,
+  },
+
+  "2": {
+    itemName: "Juice",
+    price: 550,
+  },
+
+  "3": {
+    itemName: "Body Lotion",
+    price: 2000,
+  },
+
+  "4": {
+    itemName: "Plantain chips",
+    price: 2500,
+  },
+
+  "5": {
+    itemName: "Crispy chicken",
+    price: 1250,
+  },
+
+  "6": {
+    itemName: "Chocolate",
+    price: 500,
+  },
+
+  "7": {
+    itemName: "Plantain",
+    price: 300,
+  },
+};
+
+let cart = {};
+while (true) {
+  let selection = prompt(
+    "Hello, Welcome to Spar Super market, Yaba\n Kindly select(1-7) for the list of items you want to purchase and press 0 to display Invoice\n1. Detol soap - #200\n2. Juice - #550\n3. Body Cream - #2000\n4. Plantain Chips - #2500\n5. Crispy Chicken - #1250\n6. Chocolate - #120\n7. Plantain - #300\n0. Exit - To display your Invoice"
+  );
+
+  if (selection == 0) {
+    let total_items = Object.values(cart);
+    cart.total = eval(total_items.join("+"));
+    console.log("Thank you for shopping with us. Below is your invoice");
+    console.table(cart);
+    break;
+  } else {
+    if (selection < 0 || selection > 7 || isNaN(selection)) {
+      alert(
+        "Invalid Input, Please try again-- Input must be a number and between (1-7)"
+      );
+    } else {
+      switch (selection) {
+        case selection:
+          console.log(
+            `You have added ${items[selection].itemName} to your cart `
+          );
+
+          let numOfitem = prompt(
+            `How many ${items[selection].itemName} are you buying?`
+          );
+
+          let totalPrice = items[selection].price * numOfitem;
+          cart[items[selection].itemName] = totalPrice;
+          break;
+      }
+    }
+  }
 }
-let total
-let new_items = {}
-let selection = prompt("Hello, Welcome to Spar Super market, Yaba\n Kindly select(1-7) for the list of items you want to purchase and press 0 to display Invoice\n1. Detol soap - #200\n2. Juice - #550\n3. Body Cream - #2000\n4. Plantain Chips - #2500\n5. Crispy Chicken - #1250\n6. Chocolate - #120\n7. Plantain - #300\n0. Exit")
 
+// console.log(cart)
+// console.log(Object.values(cart))
+// console.log(eval(Object.values(cart).join('+')))
 
-
-switch (selection){
-    case "1":
-        console.log(`You've added ${items[1][0]} to your cart\n`)
-        new_items.items[1][0] = items[1][1]
-        break
-    case "2":
-        console.log(`You've added ${items[2][0]} to your cart\n`)
-        new_items.items[2][0] = items[2][1]
-        break
-    case "3":
-        console.log(`You've added ${items[3][0]} to your cart\n`)
-        new_items.items[3][0] = items[3][1]
-        break
-    case "4":
-        console.log(`You've added ${items[4][0]} to your cart\n`)
-        new_items.items[4][0] = items[4][1]
-        break
-    case "5":
-        console.log(`You've added ${items[5][0]} to your cart\n`)
-        new_items.items[5][0] = items[5][1]
-        break
-    case "6":
-        console.log(`You've added ${items[6][0]} to your cart\n`)
-        new_items.items[6][0] = items[6][1]
-        break
-    case "7":
-        console.log(`You've added ${items[7][0]} to your cart\n`)
-        new_items.items[7][0] = items[7][1]
-        break
-    default:
-        console.log("Invalid selection")
-}
-console.log(new_items)
-// function items_selection(){
-// for (selection; selection < 8; selection++){
-// switch (selection){
-//     case selection:
-//         console.log(`You've added ${items[selection][0]} to your cart\n`)
-//         return
-//     case 0:
-//         console.log("You've exited successfully")
-//     default:
-//         console.log("Sorry Invalid Selection")
-// }
-// }
-// }
-// console.log(items_selection())
-
-
-
-// console.log(items[1])
+// console.log(JSON.stringify(cart, null, 4))
